@@ -72,9 +72,9 @@ Do **not** continue if any requirement is missing.
 ### Enable IOMMU in the Kernel
 
 Edit GRUB:
-
-
+```bash
 $ sudo nano /etc/default/grub
+```
 Intel CPUs
 
 GRUB_CMDLINE_LINUX="intel_iommu=on iommu=pt"
@@ -86,14 +86,14 @@ GRUB_CMDLINE_LINUX="amd_iommu=on iommu=pt"
 
 
 Regenerate GRUB:
-
+```bash
 $ sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-
+```
 
 Reboot:
-
+```bash
 $ sudo reboot
-
+```
 
 Verify IOMMU:
 
