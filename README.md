@@ -158,6 +158,7 @@ Kernel driver in use: vfio-pci
 <h3 id="part-3-virtualization-setup-libvirt--kvm"> 
   Part 3: Virtualization Setup (libvirt & KVM)
 </h3>
+
 Install Virtualization Stack
 ```bash
 $ sudo dnf update -y
@@ -169,51 +170,51 @@ $ sudo systemctl enable --now libvirtd
 $ sudo systemctl status libvirtd
 ```
 Add User to Required Groups (CRITICAL)
+```bash
+
 $ sudo usermod -aG libvirt,kvm,input,disk $(whoami)
 $ newgrp libvirt
-
+```
 
 Verify:
+```bash
 
 $ groups
-
+```
 Fix Default libvirt Network
-$ sudo virsh net-list --all
+```bash
 
+$ sudo virsh net-list --all
+```
 
 If inactive:
+```bash
 
 $ sudo virsh net-start default
 $ sudo virsh net-autostart default
-
+```
 
 Verify:
+```bash
 
 $ sudo virsh net-list
-
+```
 
 Expected:
 
 default   active   yes
 
 Verify KVM Acceleration
-$ lsmod | grep kvm
+```bash
 
+$ lsmod | grep kvm
+```
 
 Expected:
 
 kvm_intel or
 
 kvm_amd
-
-Optional validation:
-
-$ virt-host-validate
-
-Final Status Check
-$ systemctl is-active libvirtd
-$ virsh net-list
-$ lspci -nnk | grep -A3 VGA
 
 
 ✔ libvirtd running
